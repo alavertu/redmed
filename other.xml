@@ -1,0 +1,16 @@
+<application>
+  <component name="PyTestFrameworkService">
+    <option name="SDK_TO_PYTEST">
+      <map>
+        <entry key="$USER_HOME$/anaconda/envs/CS224W/bin/python" value="false" />
+        <entry key="$USER_HOME$/anaconda/envs/Py35/bin/python" value="false" />
+        <entry key="$USER_HOME$/anaconda/envs/Py36/bin/python" value="false" />
+      </map>
+    </option>
+    <option name="SDK_TO_NOSETEST">
+      <map>
+        <entry key="$USER_HOME$/anaconda/envs/CS224W/bin/python" value="false" />
+      </map>
+    </option>
+  </component>
+</application>
