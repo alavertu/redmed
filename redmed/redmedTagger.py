@@ -1,5 +1,6 @@
-import textHandler as th
+from collections import Counter
 
+import textHandler as th
 
 class redmedTagger():
 
@@ -64,52 +65,91 @@ class redmedTagger():
 
         return(hit_indices)
 
-    def get_output(self, text, temp_tokens, hit_indices, flag):
+    def get_output(self, text, temp_tokens, hit_indices, flags):
         preserved_tokens = self.parser.tokenize(text)
         phrase_adjust = 0
         out_strs = list()
+
+        flag = flags[0]
+        j = 0
         for i, tok in enumerate(temp_tokens):
             if "_" in tok:
 
                 if i in hit_indices:
-                    out_strs.append(flag)
+                    out_strs.append("<" + flag + ">")
                     _ = [out_strs.append(x) for x in preserved_tokens[i + phrase_adjust:i + phrase_adjust + 2]]
-                    out_strs.append(flag)
+                    out_strs.append("<" + flag + ">")
+                    if len(flags) > 1:
+                        j += 1
+                        if j < len(flags):
+                            flag = flags[j]
                 else:
                     _ = [out_strs.append(x) for x in preserved_tokens[i + phrase_adjust:i + phrase_adjust + 2]]
                 phrase_adjust += 1
+
             #             phrase_adjust += 1
             else:
-                if tok in redmed_terms:
-                    out_strs.append(flag)
+                if i in hit_indices:
+                    out_strs.append("<" + flag + ">")
                     out_strs.append(preserved_tokens[i + phrase_adjust])
-                    out_strs.append(flag)
+                    out_strs.append("<" + flag + ">")
+                    if len(flags) > 1:
+                        j += 1
+                        if j < len(flags):
+                            flag = flags[j]
                 else:
                     out_strs.append(preserved_tokens[i + phrase_adjust])
             if i + phrase_adjust > len(preserved_tokens) - 1:
                 break
         return(" ".join(out_strs))
 
-    def get_normalized_output(self, temp_tokens, hit_indices, flag):
+    def get_normalized_output(self, temp_tokens, hit_indices, flags):
         out_strs = list()
+        flag = flags[0]
+        j = 0
         for i, tok in enumerate(temp_tokens):
             if i in hit_indices:
-                out_strs.append(flag)
+                out_strs.append("<" + flag + ">")
                 out_strs.append(tok)
-                out_strs.append(flag)
+                out_strs.append("<" + flag + ">")
+                if len(flags) > 1:
+                    j += 1
+                    if j < len(flags):
+                        flag = flags[j]
             else:
                 out_strs.append(tok)
         return(" ".join(out_strs))
 
     def general_drug_flagging(self, sentence, preserve_case=True):
         temp_tokens = self.parser.get_ordered_tokens(sentence)
-        out_strs = list()
         hits = self.get_redmed_drug_hits(temp_tokens)
         if preserve_case:
-            out_str = self.get_output(sentence, temp_tokens, hits, "<drug_related>")
+            out_str = self.get_output(sentence, temp_tokens, hits, ["drug_related"])
 
         else:
-            out_str = self.get_normalized_output(temp_tokens, hits, "<drug_related>")
+            out_str = self.get_normalized_output(temp_tokens, hits, ["drug_related"])
 
         return(out_str)
-    
+
+    def specific_drug_flagging(self, sentence, preserve_case=True):
+        temp_tokens = self.parser.get_ordered_tokens(sentence)
+        hits = self.get_redmed_drug_hits(temp_tokens)
+        labels = []
+        for i in hits:
+            labels.append(self.redmed_terms.get(temp_tokens[i])[1])
+
+        if preserve_case:
+            out_str = self.get_output(sentence, temp_tokens, hits, labels)
+
+        else:
+            out_str = self.get_normalized_output(temp_tokens, hits, labels)
+
+        return(out_str)
+
+    def get_mention_counts(self, sentence):
+        temp_tokens = self.parser.get_ordered_tokens(sentence)
+        hits = self.get_redmed_drug_hits(temp_tokens)
+        labels = []
+        for i in hits:
+            labels.append(self.redmed_terms.get(temp_tokens[i])[1])
+        return(dict(Counter(labels)))
