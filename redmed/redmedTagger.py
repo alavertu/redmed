@@ -2,7 +2,7 @@ from collections import Counter
 
 import textHandler as th
 
-class redmedTagger():
+class redmed():
 
     def __init__(self):
 
