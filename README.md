@@ -2,7 +2,7 @@
 
 The redmed annotator tool is designed to annotate text data in accordance with the mappings from "RedMed: Extending drug lexicons for social media applications". 
 
-The creation of this lexicon was automated and may contain errors. If you'd like to ensure complete accuracy, you can manually curate the `redmed_drug_lexicon.tsv` file inside of the data directory. Simply remove or add tokens to the relevant list of comma separated entites. Make sure that any tokens you add are all lowercase and spaces within phrases are replaced with underscores. 
+The creation of this lexicon was automated and may contain errors. If you'd like to ensure complete accuracy, you can manually curate the `redmed_drug_lexicon.tsv` file inside of the data directory. Simply remove or add tokens to the relevant list of comma separated entites. Make sure that any tokens you add are all lowercase and spaces within phrases are replaced with underscores. Additionally, phrases need to be added to the `redmed_phrases.txt` file in the data directory.
 
 **If you use this tool, please cite:**
 > **A. Lavertu and RB Altman. "RedMed: Extending drug lexicons for social media applications"** **INSERT ACTUAL CITATION**
