@@ -9,9 +9,5 @@ setup(
   url = 'https://github.com/alavertu/redmed',
   download_url = 'https://github.com/alavertu/redmed.git',
   keywords = ['pharmacovigilance', 'lexicon', 'text analysis', 'drugs', 'social media data'],
-  #package_data= { 'empath': ['data/lexicon.txt', "data/user/blank"]}, Update with path to lexicon once finalized
   classifiers = [],
-  install_requires=[
-          'requests'
-  ]
 )
