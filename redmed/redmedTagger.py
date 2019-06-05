@@ -1,5 +1,7 @@
 from collections import Counter
 
+import os.path
+
 from . import textHandler as th
 
 class redmedTagger():
@@ -16,7 +18,9 @@ class redmedTagger():
         self.backMap = dict()
         self.foundMappings = dict()
         self.redmed_terms = dict()
-        with open("./data/redmed_drug_lexicon.tsv") as inFile:
+        locPath = os.path.abspath(os.path.dirname(__file__))
+        curPath = os.path.join(locPath,"data/redmed_drug_lexicon.tsv")
+        with open(curPath) as inFile:
             for i, line in enumerate(inFile):
                 dbid, drug, known, misspellingPhon, edOne, edTwo, pillMark, google_ms, google_title, google_snipped, ud_slang, missed = line.strip().split(
                     "\t")

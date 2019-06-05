@@ -1,11 +1,16 @@
 import re
 import string
 
+import os.path
+
 punctuations = string.punctuation
+
+locPath = os.path.abspath(os.path.dirname(__file__))
+curPath2 = os.path.join(locPath, "data/redmed_phrases.txt")
 
 class textHandler():
 
-    def __init__(self, phrasePath="./data/redmed_phrases.txt"):
+    def __init__(self, phrasePath=curPath2):
         self.phrases = set()
         with open(
             phrasePath

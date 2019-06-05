@@ -2,7 +2,7 @@ from setuptools import setup
 setup(
   name = 'redmed',
   packages = ['redmed'],
-  version = '0.7.0',
+  version = '0.1.3',
   description = 'Lexicon and associated tools for identifying drug mentions in social media data',
   author = 'Adam Lavertu',
   author_email = 'adamlavertu@gmail.com',
