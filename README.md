@@ -1,4 +1,4 @@
-# redmed
+# RedMed: Extending drug lexicons for social media applications
 
 The redmed annotator tool is designed to annotate text data in accordance with the mappings from "RedMed: Extending drug lexicons for social media applications". 
 
@@ -7,13 +7,15 @@ The creation of this lexicon was automated and may contain errors. If you'd like
 **If you use this tool, please cite:**
 > **A. Lavertu and RB Altman. "RedMed: Extending drug lexicons for social media applications"** **INSERT ACTUAL CITATION**
 
+## Install:
+> pip install redmed
 
 ## Example usage:
 
 First let's import the tool and create a redmed tagger object:
 ```python
-import redmedTagger as rmt
-tagger = rmt.redmedTagger()
+import redmed
+tagger = redmed.redmedTagger()
 ```
 Now let's create a string to annotate:
 ```python
