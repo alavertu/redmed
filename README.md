@@ -1,4 +1,4 @@
-# redmed
+# RedMed: Extending drug lexicons for social media applications
 
 The redmed annotator tool is designed to annotate text data in accordance with the mappings from "RedMed: Extending drug lexicons for social media applications". 
 
