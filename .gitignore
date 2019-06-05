@@ -1,0 +1,3 @@
+*.xml
+*.ipynb*
+*__pycache__*
