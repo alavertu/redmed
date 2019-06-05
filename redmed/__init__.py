@@ -1,1 +1,1 @@
-from .redmedTagger import redmed
+from .redmedTagger import redmedTagger

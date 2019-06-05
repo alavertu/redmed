@@ -1,8 +1,8 @@
 from collections import Counter
 
-import textHandler as th
+from . import textHandler as th
 
-class redmed():
+class redmedTagger():
 
     def __init__(self):
 
