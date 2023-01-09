@@ -82,7 +82,7 @@ class redmedTagger():
                 if i in hit_indices:
                     out_strs.append("<" + flag + ">")
                     _ = [out_strs.append(x) for x in preserved_tokens[i + phrase_adjust:i + phrase_adjust + 2]]
-                    out_strs.append("<" + flag + ">")
+                    out_strs.append("</" + flag + ">")
                     if len(flags) > 1:
                         j += 1
                         if j < len(flags):
@@ -96,7 +96,7 @@ class redmedTagger():
                 if i in hit_indices:
                     out_strs.append("<" + flag + ">")
                     out_strs.append(preserved_tokens[i + phrase_adjust])
-                    out_strs.append("<" + flag + ">")
+                    out_strs.append("</" + flag + ">")
                     if len(flags) > 1:
                         j += 1
                         if j < len(flags):
@@ -115,7 +115,7 @@ class redmedTagger():
             if i in hit_indices:
                 out_strs.append("<" + flag + ">")
                 out_strs.append(tok)
-                out_strs.append("<" + flag + ">")
+                out_strs.append("</" + flag + ">")
                 if len(flags) > 1:
                     j += 1
                     if j < len(flags):

@@ -13,7 +13,7 @@ class textHandler():
     def __init__(self, phrasePath=curPath2):
         self.phrases = set()
         with open(
-            phrasePath
+            phrasePath, encoding='utf-8'
         ) as inPhrases:
             for phrase in inPhrases:
                 self.phrases.add(phrase.strip())
